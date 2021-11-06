@@ -13,15 +13,15 @@ jobs:
       - run: docker build -t varvaradialog/react-test -f ./client/Dockerfile.dev ./client
       - run: docker run -e CI=true varvaradialog/react-test npm test
  
-      - run: docker build -t varvaradialog/complex-client-10-14 ./client
-      - run: docker build -t varvaradialog/complex-nginx-10-14 ./nginx
-      - run: docker build -t varvaradialog/complex-server-10-14 ./server
-      - run: docker build -t varvaradialog/complex-worker-10-14 ./worker
+      - run: docker build -t varvaradialog/complex-client ./client
+      - run: docker build -t varvaradialog/complex-nginx ./nginx
+      - run: docker build -t varvaradialog/complex-server ./server
+      - run: docker build -t varvaradialog/complex-worker ./worker
  
-      - run: docker push varvaradialog/complex-client-10-14
-      - run: docker push varvaradialog/complex-nginx-10-14
-      - run: docker push varvaradialog/complex-server-10-14
-      - run: docker push varvaradialog/complex-worker-10-14
+      - run: docker push varvaradialog/complex-client
+      - run: docker push varvaradialog/complex-nginx
+      - run: docker push varvaradialog/complex-server
+      - run: docker push varvaradialog/complex-worker
  
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
@@ -32,7 +32,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
           application_name: udemy-docker-react-complex
-          environment_name: Udemy-docker-react-complex-env
+          environment_name: Udemydockerreactcomplex-env
           existing_bucket_name: elasticbeanstalk-eu-north-1-527301380176
           region: eu-north-1
           version_label: ${{ github.sha }}
